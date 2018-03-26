@@ -1,0 +1,27 @@
+{
+  "name": "rename-expert",
+  "version": "1.0.0",
+  "description": "The project name is pretty self-explanatory.",
+  "main": "go.js",
+  "scripts": {
+    "test": "node go.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DMXL/rename-expert.git"
+  },
+  "keywords": [
+    "rename",
+    "fs"
+  ],
+  "author": "dm@dmon-studio.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DMXL/rename-expert/issues"
+  },
+  "homepage": "https://github.com/DMXL/rename-expert#readme",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "commander": "^2.15.1"
+  }
+}
