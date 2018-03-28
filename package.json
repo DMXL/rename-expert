@@ -1,11 +1,15 @@
 {
   "name": "rename-expert",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "The project name is pretty self-explanatory.",
-  "main": "go.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node go.js"
+    "test": "node index.js"
   },
+  "bin": {
+    "rename": "./bin/rename"
+  },
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DMXL/rename-expert.git"
