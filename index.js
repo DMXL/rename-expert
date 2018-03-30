@@ -6,12 +6,12 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-28 14:10:48
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-03-29 14:53:26
+ * @Last Modified time: 2018-03-30 16:10:55
  */
 
 const cmd = require('commander')
 const chalk = require('chalk')
-const rename = require('./lib/rn')
+const rename = require('./lib/rename')
 
 process.title = 'dm-rename-expert'
 
