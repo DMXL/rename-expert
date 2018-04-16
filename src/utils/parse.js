@@ -4,7 +4,7 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-29 15:46:53
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 18:27:26
+ * @Last Modified time: 2018-04-16 19:44:31
 */
 
 const chalk = require('chalk')
@@ -36,10 +36,13 @@ exports.parseInExp = (exp) => {
         : match.substr(1, match.length - 2)
       tags.push(tag)
     })
-    // note: need to avoid greedy matching
-    result = new RegExp(exp.replace(numReg, '(\\d+)')
-      .replace(tagReg, '(.*)')
-      .replace(/\(\.\*\)/, '(.*?)'))
+    
+    // NOTE: need to avoid greedy matching for all but the last token
+    let temp = exp.replace(numReg, '(\\d+?)')
+      .replace(tagReg, '(.*?)')
+      .replace(/\((.*)\?\)(?!.*\(.*\?\))/, '($1)')
+    
+    result = new RegExp(temp)
   } else {
     result = chalk.yellow('warning: no tags were found in that expression')
   }

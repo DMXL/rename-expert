@@ -4,12 +4,16 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-04-04 14:37:34
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 19:04:59
+ * @Last Modified time: 2018-04-16 20:10:54
  */
 
 const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
+
+const replace = (filename, regex, pattern) => {
+  return filename.replace(regex, pattern)
+}
 
 exports.rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
   
@@ -23,8 +27,21 @@ exports.rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
     }
 
     const targets = files.filter((file) => {
-      if (ext === '.*' || ext === path.extname(file)) {
-        console.log(file)
+      const extname = path.extname(file)
+      const fullname = path.basename(file)
+      const name = path.basename(file, extname)
+
+      if (ext === '.*' || ext === extname) {
+        const newName = name.replace(regex, pattern)
+        const newFullname = `${newName}${ext}`
+
+        if (!copy) {
+          console.log('moving: ' + fullname)
+          fs.renameSync(path.join(src, fullname), path.join(dest, newFullname))
+        } else {
+          console.log('copying: ' + fullname)
+          fs.copyFileSync(path.join(src, fullname), path.join(dest, newFullname))
+        }
         return true
       }
       return false
