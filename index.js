@@ -6,18 +6,22 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-28 14:10:48
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-03-30 16:10:55
+ * @Last Modified time: 2018-04-16 15:29:59
  */
 
 const cmd = require('commander')
 const chalk = require('chalk')
-const rename = require('./lib/rename')
+const app = require('./src/app')
+const steps = require('./src/steps')
 
 process.title = 'dm-rename-expert'
 
 cmd.version('0.1.0')
-  .option('-i, --input [input_dir]', 'Set the directory of files that you want to rename')
+  .command(chalk.cyan('rename'))
+  .option('-i, --input <input_dir>', 'set your directory of files to rename')
+  .option('-t, --test <filename>', 'test your pattern with a dummy filename')
+  .option('-s, --src <source_dir>', 'check your source directory')
   .parse(process.argv)
 
 console.log(chalk.cyan('Here we go:'))
-rename.run({}, cmd)
+app.run(steps, cmd.commands[0])
