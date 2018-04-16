@@ -4,15 +4,16 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-28 23:36:49
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 16:55:24
+ * @Last Modified time: 2018-04-16 18:55:32
  */
 
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
 const chalk = require('chalk')
+const resolve = require('./utils/resolve')
 const { parseInExp, parseOutExp } = require('./utils/parse')
-const { rename } = require('./utils/rename')
+const { rename, scan } = require('./utils/rename')
 
 exports.run = (steps, cmd) => {  
   const rl = readline.createInterface({
@@ -21,17 +22,17 @@ exports.run = (steps, cmd) => {
   })
   let answers = {}
 
+  /**
+   * Start app
+   */
   const start = () => {
     // option -t, --test <filename>
     if (cmd.test) {
       steps = steps.slice(2)
     }
-
     // option -s, --src <src_dir>
     if (cmd.src) {
-      rename({
-        src: cmd.src
-      }, function (err) {
+      scan(resolve(cmd.src), function (err) {
         err && console.log(err)
         done()
       })
@@ -40,6 +41,10 @@ exports.run = (steps, cmd) => {
     }
   }
 
+  /**
+   * Parse current step and prompt question
+   * @param step current step object
+   */
   const prompt = (step) => {
     // check if to skip this step
     const skip = step.skip ? step.skip(cmd) : false
@@ -71,6 +76,11 @@ exports.run = (steps, cmd) => {
     }
   }
 
+  /**
+   * Process answer and go to next step
+   * @param _this parsed step object
+   * @param answer 
+   */
   const next = (_this, answer) => {
     answer = answer.trim()
     // use default if nothing's entered
@@ -84,19 +94,26 @@ exports.run = (steps, cmd) => {
       answers[_this.key] = result
       // go next
       steps.length > 0 ? prompt(steps.shift()) : exec()
-    } else if (!_this.once) {
+    } else {
       console.log(chalk.red(result || 'something\'s wrong.'))
       // to drop or to repeat
       _this.once ? done(true) : prompt(_this.step_)
     }
   }
 
+  /**
+   * App finishes
+   * @param {boolean} drop if it finishes unexpected
+   */
   const done = (drop) => {
     console.log(chalk.gray('answers are: ' + JSON.stringify(answers)))
     console.log(chalk.blue(drop ? 'dropped' : 'finished.'))
     rl.close()
   }
 
+  /**
+   * Execute rename
+   */
   const exec = () => {
     const { test } = cmd
     

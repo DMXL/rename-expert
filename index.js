@@ -6,7 +6,7 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-28 14:10:48
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 16:43:16
+ * @Last Modified time: 2018-04-16 19:08:05
  */
 
 const cmd = require('commander')
@@ -19,7 +19,7 @@ process.title = 'dm-rename-expert'
 cmd.version('0.1.0')
   .command(chalk.blue('rename'))
   .option('-i, --input <input_dir>', 'set your directory of files to rename')
-  .option('-t, --test \'<filename>\'', 'test your pattern with a dummy filename')
+  .option('-t, --test <filename>', 'test your pattern with a dummy filename')
   .option('-s, --src <source_dir>', 'check your source directory')
   .parse(process.argv)
 
