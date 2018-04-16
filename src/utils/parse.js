@@ -4,12 +4,14 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-29 15:46:53
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 15:25:10
+ * @Last Modified time: 2018-04-16 16:58:52
 */
 
 const chalk = require('chalk')
 
-const tagReg = /%[^%\s]+%/g
+const tagReg = /%[^%\s]+%/g // default tag: %TAG_NAME%
+const numReg = /%[^%\s]+\.NUM%/g // number tag: %TAG_NAME.NUM% 
+
 // const funcReg = /\$(NU|CA|UP|LO)\([^()]*\)/g
 
 let tags = []
@@ -19,22 +21,25 @@ let tags = []
  * @param exp user defined expression
  * 
  * match all the `%TAG_NAME%`s
- * return with the regex string for rename task's input
- * or `false` if matching fails
  */
 exports.parseInExp = (exp) => {
   const matches = exp.match(tagReg)
   const valid = !!matches
   let result = ''
+  let hasNum = false
 
   if (valid) {
     matches.forEach((match, i) => {
-      // remove the `%`
-      const tag = match.substr(1, match.length - 2)
+      // remove the `%` tag wrappers after checking tag type
+      const tag = numReg.test(match)
+        ? match.substr(1, match.length - 6)
+        : match.substr(1, match.length - 2)
       tags.push(tag)
     })
     // note: need to avoid greedy matching
-    result = exp.replace(tagReg, '(.*)').replace(/\(\.\*\)/, '(.*?)')
+    result = new RegExp(exp.replace(numReg, '(\\d+)')
+      .replace(tagReg, '(.*)')
+      .replace(/\(\.\*\)/, '(.*?)'))
   } else {
     result = chalk.yellow('warning: no tags were found in that expression')
   }

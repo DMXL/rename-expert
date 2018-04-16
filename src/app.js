@@ -4,7 +4,7 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-03-28 23:36:49
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 15:55:20
+ * @Last Modified time: 2018-04-16 16:55:24
  */
 
 const fs = require('fs')
@@ -51,7 +51,7 @@ exports.run = (steps, cmd) => {
       question = chalk.green(question)
 
       // additional message
-      addition && (question += chalk.white(`(${addition}) `))
+      addition && (question += chalk.gray(`(${addition}) `))
 
       // default value
       if (defaultVal) {
@@ -59,7 +59,7 @@ exports.run = (steps, cmd) => {
         if (typeof defaultVal === 'function') {
           defaultVal = defaultVal(answers)
         }
-        question += chalk.white(`(default ${defaultVal}) `)
+        question += chalk.gray(`(default ${defaultVal}) `)
       }
       // rewrite step obeject and keep the original one
       const step_ = Object.assign({}, step)
@@ -92,30 +92,22 @@ exports.run = (steps, cmd) => {
   }
 
   const done = (drop) => {
-    console.log(chalk.white('answers are: ' + JSON.stringify(answers)))
-    console.log(chalk.cyan(drop ? 'dropped' : 'finished.'))
+    console.log(chalk.gray('answers are: ' + JSON.stringify(answers)))
+    console.log(chalk.blue(drop ? 'dropped' : 'finished.'))
     rl.close()
   }
 
   const exec = () => {
     const { test } = cmd
-    const { input, output, before, after, copy } = answers
-    const regex = new RegExp(before)
     
     if (test) {
       const filename = test.trim()
-      const reg = new RegExp(before)
       
-      console.log(before, after)
-      console.log(chalk.cyan('result: '), filename.replace(reg, after))
+      console.log(answers.regex, answers.pattern)
+      console.log(chalk.blue('result: '), filename.replace(answers.regex, answers.pattern))
+      done()
     } else {
-      rename({
-        src: input,
-        dest: output,
-        regex,
-        pattern: after,
-        copy
-      }, function(err) {
+      rename(answers, function(err) {
         err && console.log(err)
         done()
       })

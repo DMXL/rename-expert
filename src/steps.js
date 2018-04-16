@@ -4,7 +4,7 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-04-13 17:23:28
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 16:03:24
+ * @Last Modified time: 2018-04-16 16:52:00
  */
 
 const fs = require('fs')
@@ -23,34 +23,34 @@ const { parseInExp, parseOutExp } = require('./utils/parse')
 module.exports = [
   // STEP 1
   {
-    key: 'input',
+    key: 'src',
     defaultVal: './',
     question: " ➡ input file directory: ",
-    skip: ({ input }) => input,
+    skip: ({ src }) => src,
     process: (entry) => {
-      const inputDir = path.resolve(__dirname, process.cwd(), entry)
-      const valid = fs.existsSync(inputDir)
-      const result = valid ? inputDir : "input directory was not found."
+      const srcDir = path.resolve(__dirname, process.cwd(), entry)
+      const valid = fs.existsSync(srcDir)
+      const result = valid ? srcDir : "input directory was not found."
 
       return { valid, result }
     }
   },
   // STEP 2
   {
-    key: 'output',
-    defaultVal: ({ input }) => input,
+    key: 'dest',
+    defaultVal: ({ src }) => src,
     question: " ➡ output file directory: ",
     process: (entry) => {
-      const outputDir = path.resolve(__dirname, process.cwd(), entry)
-      const valid = fs.existsSync(outputDir)
-      const result = valid ? outputDir : "output directory was not found."
+      const destDir = path.resolve(__dirname, process.cwd(), entry)
+      const valid = fs.existsSync(destDir)
+      const result = valid ? destDir : "output directory was not found."
 
       return { valid, result }
     }
   },
   // STEP 3
   {
-    key: 'before',
+    key: 'regex',
     question: " ➡ current naming pattern: ",
     addition: "try 'help'",
     process: (entry) => {
@@ -65,7 +65,7 @@ module.exports = [
   },
   // STEP 4
   {
-    key: 'after',
+    key: 'pattern',
     question: " ➡ output naming pattern: ",
     addition: "try 'help'",
     process: (entry) => {

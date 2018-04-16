@@ -4,7 +4,7 @@
  * @Author: dm@dmon-studo.com
  * @Date: 2018-04-04 14:37:34
  * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-14 02:15:51
+ * @Last Modified time: 2018-04-16 16:51:09
  */
 
 const fs = require('fs')
@@ -15,7 +15,7 @@ const resolve = (dir) => {
   return path.resolve(__dirname, process.cwd(), dir)
 }
 
-exports.rename = ({ src, dest, regex, pattern, copy }, callback) => {
+exports.rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
 
   fs.readdir(resolve(src), (err, files) => {
     if (files.length === 0) {
