@@ -10,3 +10,7 @@ The project name is pretty self-explanatory.
 - support some basic string/numeric functions when constructing new filenames
 - add `--verbose` option to turn on/off extensive loggings
 - record some more stats during the renaming tasks
+
+### Changelog
+
+Changes of each release are written in the [release notes](https://github.com/DMXL/rename-expert/releases).
