@@ -1,6 +1,6 @@
 {
   "name": "rename-expert",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The project name is pretty self-explanatory.",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,9 @@
   },
   "bin": {
     "rename": "./bin/rename"
+  },
+  "engines": {
+    "node": ">=8.5.0"
   },
   "preferGlobal": true,
   "repository": {

@@ -2,6 +2,8 @@
 
 The project name is pretty self-explanatory.
 
+![node](https://img.shields.io/badge/node-%3E%3D8.5.0-brightgreen.svg)
+
 ### TODOs
 
 - do a node compatibility check
