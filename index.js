@@ -1,14 +1,5 @@
 #!/usr/bin/env node
 
-/*
- * COPYRIGHT © 2018 DMON STUDIO ALL RIGHTS RESERVED
- *
- * @Author: dm@dmon-studo.com
- * @Date: 2018-03-28 14:10:48
- * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 19:08:05
- */
-
 const cmd = require('commander')
 const chalk = require('chalk')
 const app = require('./src/app')
