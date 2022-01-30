@@ -1,6 +1,6 @@
 {
   "name": "rename-expert",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The project name is pretty self-explanatory.",
   "main": "index.js",
   "type": "module",
