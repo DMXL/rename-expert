@@ -2,7 +2,7 @@
 
 The project name is pretty self-explanatory.
 
-![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![node](https://img.shields.io/badge/node-%3E%3D8.5.0-brightgreen.svg)
 
 ## Installation
