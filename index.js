@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
-const cmd = require("commander");
-const chalk = require("chalk");
-const app = require("./src/app");
-const steps = require("./src/steps");
+import { Command } from "commander";
+import chalk from "chalk";
+import app from "./src/app.js";
+import steps from "./src/steps.js";
 
 process.title = "dm-rename-expert";
+
+const cmd = new Command();
 
 cmd
   .version("0.1.0")
