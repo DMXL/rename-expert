@@ -1,6 +1,6 @@
-const fs = require("fs");
-const resolve = require("./utils/resolve");
-const { parseInExp, parseOutExp } = require("./utils/parse");
+import fs from "node:fs";
+import resolve from "./utils/resolve.js";
+import { parseInExp, parseOutExp } from "./utils/parse.js";
 
 // Steps
 //
@@ -10,7 +10,7 @@ const { parseInExp, parseOutExp } = require("./utils/parse");
 // `skip`:  whether to skip this one (if yes, it's the presetted answer)
 // `once`:  whether to repeat this one if check fails (false to repeat)
 // `process`:  method to check and process the entered answer before storing
-module.exports = [
+const steps = [
   // STEP 1
   {
     key: "src",
@@ -92,3 +92,5 @@ module.exports = [
     },
   },
 ];
+
+export default steps;

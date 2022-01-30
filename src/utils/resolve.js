@@ -1,8 +1,10 @@
-const path = require("path");
+import path from "node:path";
 
-module.exports = (dir) => {
+const resolve = (dir) => {
   if (dir[0] === "~") {
     return path.join(process.env.HOME, dir.slice(1));
   }
   return path.resolve(__dirname, process.cwd(), dir);
 };
+
+export default resolve;

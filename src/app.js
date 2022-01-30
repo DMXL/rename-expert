@@ -1,12 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const readline = require("readline");
-const chalk = require("chalk");
-const resolve = require("./utils/resolve");
-const { parseInExp, parseOutExp } = require("./utils/parse");
-const { rename, scan } = require("./utils/rename");
+import readline from "node:readline";
+import chalk from "chalk";
+import resolve from "./utils/resolve.js";
+import { rename, scan } from "./utils/rename.js";
 
-exports.run = (steps, cmd) => {
+const run = (steps, cmd) => {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -127,3 +124,5 @@ exports.run = (steps, cmd) => {
 
   start();
 };
+
+export default { run };

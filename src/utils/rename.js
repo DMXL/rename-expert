@@ -1,12 +1,12 @@
-const fs = require("fs");
-const chalk = require("chalk");
-const path = require("path");
+import fs from "node:fs";
+import path from "node:path";
+import chalk from "chalk";
 
 const replace = (filename, regex, pattern) => {
   return filename.replace(regex, pattern);
 };
 
-exports.rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
+const rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
   // scan source directory
   fs.readdir(src, (err, files) => {
     // empty directory
@@ -48,7 +48,7 @@ exports.rename = ({ src, dest, regex, pattern, ext, copy }, callback) => {
   });
 };
 
-exports.scan = (src, callback) => {
+const scan = (src, callback) => {
   fs.readdir(src, (err, files) => {
     if (files.length === 0) {
       callback(chalk.yellow("source directory is empty."));
@@ -60,3 +60,5 @@ exports.scan = (src, callback) => {
     callback();
   });
 };
+
+export { replace, rename, scan };

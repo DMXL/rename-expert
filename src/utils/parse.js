@@ -1,4 +1,4 @@
-const chalk = require("chalk");
+import chalk from "chalk";
 
 const tagReg = /%[^%\s]+%/g; // default tag: %TAG_NAME%
 const numReg = /%[^%\s]+\.NUM%/g; // number tag: %TAG_NAME.NUM%
@@ -13,7 +13,7 @@ let tags = [];
  *
  * match all the `%TAG_NAME%`s
  */
-exports.parseInExp = (exp) => {
+const parseInExp = (exp) => {
   const matches = exp.match(tagReg);
   const valid = !!matches;
   let result = "";
@@ -46,7 +46,7 @@ exports.parseInExp = (exp) => {
  * Parse output filename pattern
  * @param exp user defined expression
  */
-exports.parseOutExp = (exp) => {
+const parseOutExp = (exp) => {
   const result = exp.replace(tagReg, (match) => {
     // remove the `%`
     const tag = match.substr(1, match.length - 2);
@@ -57,3 +57,5 @@ exports.parseOutExp = (exp) => {
 
   return { valid: true, result };
 };
+
+export { parseInExp, parseOutExp };
