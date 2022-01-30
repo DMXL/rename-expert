@@ -1,12 +1,3 @@
-/*
- * COPYRIGHT © 2018 DMON STUDIO ALL RIGHTS RESERVED
- *
- * @Author: dm@dmon-studo.com
- * @Date: 2018-03-28 23:36:49
- * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 18:55:32
- */
-
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')

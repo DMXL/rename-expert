@@ -1,12 +1,3 @@
-/*
- * COPYRIGHT © 2018 DMON STUDIO ALL RIGHTS RESERVED
- *
- * @Author: dm@dmon-studo.com
- * @Date: 2018-04-13 17:23:28
- * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 19:06:52
- */
-
 const fs = require('fs')
 const resolve = require('./utils/resolve')
 const { parseInExp, parseOutExp } = require('./utils/parse')

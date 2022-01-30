@@ -1,12 +1,3 @@
-/*
- * COPYRIGHT © 2018 DMON STUDIO ALL RIGHTS RESERVED
- *
- * @Author: dm@dmon-studo.com
- * @Date: 2018-03-29 15:46:53
- * @Last Modified by: dm@dmon-studo.com
- * @Last Modified time: 2018-04-16 19:44:31
-*/
-
 const chalk = require('chalk')
 
 const tagReg = /%[^%\s]+%/g // default tag: %TAG_NAME%
