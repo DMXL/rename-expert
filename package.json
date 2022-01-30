@@ -10,7 +10,7 @@
     "rename": "./bin/rename"
   },
   "engines": {
-    "node": ">=8.5.0"
+    "node": "^12.17.0 || ^14.13 || >=16.0.0"
   },
   "preferGlobal": true,
   "repository": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/DMXL/rename-expert#readme",
   "dependencies": {
-    "chalk": "^2.3.2",
-    "commander": "^2.15.1"
+    "chalk": "^5.0.0",
+    "commander": "^9.0.0"
   }
 }
