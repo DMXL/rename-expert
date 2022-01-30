@@ -17,12 +17,19 @@ npm install rename-expert -g
 
 ## TODOs
 
-- do a node compatibility check
-- for constructing new filenames:
+### 2018-04-16
+
+- [x] do a node compatibility check
+- [ ] for constructing new filenames:
   - support some basic string/numeric functions
   - support meta info for media files
-- add `--verbose` option to turn on/off extensive loggings
-- record some more stats during the renaming tasks
+- [ ] add `--verbose` option to turn on/off extensive loggings
+- [ ] record some more stats during the renaming tasks
+
+### 2022-01-30
+
+- [ ] Migrate to TS
+- [ ] Add unit tests
 
 ## Changelog
 
