@@ -1,9 +1,9 @@
-const fs = require('fs')
-const resolve = require('./utils/resolve')
-const { parseInExp, parseOutExp } = require('./utils/parse')
+const fs = require("fs");
+const resolve = require("./utils/resolve");
+const { parseInExp, parseOutExp } = require("./utils/parse");
 
 // Steps
-// 
+//
 // `key`:   key to store the entered value
 // `defaultVal`:   default value
 // `question`:   question text
@@ -13,82 +13,82 @@ const { parseInExp, parseOutExp } = require('./utils/parse')
 module.exports = [
   // STEP 1
   {
-    key: 'src',
-    defaultVal: './',
+    key: "src",
+    defaultVal: "./",
     question: " ➡ input file directory: ",
     skip: ({ input }) => input,
     process: (entry) => {
-      const srcDir = resolve(entry)
-      console.log(srcDir)
-      const valid = fs.existsSync(srcDir)
-      const result = valid ? srcDir : "input directory was not found."
+      const srcDir = resolve(entry);
+      console.log(srcDir);
+      const valid = fs.existsSync(srcDir);
+      const result = valid ? srcDir : "input directory was not found.";
 
-      return { valid, result }
-    }
+      return { valid, result };
+    },
   },
   // STEP 2
   {
-    key: 'dest',
+    key: "dest",
     defaultVal: ({ src }) => src,
     question: " ➡ output file directory: ",
     process: (entry) => {
-      const destDir = resolve(entry)
-      const valid = fs.existsSync(destDir)
-      const result = valid ? destDir : "output directory was not found."
+      const destDir = resolve(entry);
+      const valid = fs.existsSync(destDir);
+      const result = valid ? destDir : "output directory was not found.";
 
-      return { valid, result }
-    }
+      return { valid, result };
+    },
   },
   // STEP 3
   {
-    key: 'regex',
+    key: "regex",
     question: " ➡ current naming pattern: ",
     addition: "try 'help'",
     process: (entry) => {
-      if (entry === '') {
+      if (entry === "") {
         return {
           valid: false,
-          result: "enter something please.."
-        }
+          result: "enter something please..",
+        };
       }
-      return parseInExp(entry)
-    }
+      return parseInExp(entry);
+    },
   },
   // STEP 4
   {
-    key: 'pattern',
+    key: "pattern",
     question: " ➡ output naming pattern: ",
     addition: "try 'help'",
     process: (entry) => {
-      if (entry === '') {
+      if (entry === "") {
         return {
           valid: false,
-          result: "enter something please.."
-        }
+          result: "enter something please..",
+        };
       }
-      return parseOutExp(entry)
-    }
+      return parseOutExp(entry);
+    },
   },
   // STEP 5
   {
-    key: 'ext',
+    key: "ext",
     question: " ➡ extension of the files: ",
     defaultVal: ".*",
     process: (entry) => {
-      entry[0] === '.' && (entry = entry.slice(1))
-      const valid = !/\./.test(entry)
-      const result = valid ? `.${entry}` : "extension name invalid."
-      
-      return { valid, result }
-    }
+      entry[0] === "." && (entry = entry.slice(1));
+      const valid = !/\./.test(entry);
+      const result = valid ? `.${entry}` : "extension name invalid.";
+
+      return { valid, result };
+    },
   },
   // STEP 6
   {
-    key: 'copy',
-    defaultVal: 'n',
+    key: "copy",
+    defaultVal: "n",
     question: " ➡ keep the original files? [Y/n] ",
     process: (entry) => {
-      return { valid: true, result: entry === 'Y' }
-    }
-  }
-]
+      return { valid: true, result: entry === "Y" };
+    },
+  },
+];
